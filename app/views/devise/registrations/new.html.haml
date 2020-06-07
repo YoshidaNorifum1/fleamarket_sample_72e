@@ -1,0 +1,49 @@
+.singup-container
+  %header.singup-header
+    %h1.singup-header__logo
+    .singup-header__progress
+  .singup-main
+    .singup-main__head
+      会員情報入力
+      .singup-main__content
+        .singup-main__form-group
+          ニックネーム
+        .singup-main__form-group
+          アドレス
+        .singup-main__form-group
+          パスワード
+          .singup-main__info
+          .singup-main__reveal-password
+        .singup-main__form-group
+          .singup-main__sud-head
+            本人確認
+          .form-group__text
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        .singup-main__form-group
+          お名前(全角)
+        .singup-main__form-group
+          お名前カナ(全角)
+        .singup-main__form-group
+          生年月日
+
+  %h2 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .actions
+      = f.submit "Sign up"
+  = render "devise/shared/links"
